@@ -1,0 +1,74 @@
+1.概念：
+	maven是服务于Java平台的自动化构建（build）工具。
+	
+	同类产品：Make->Ant->Maven->Gradle
+	
+2.构建过程中的各个环节：
+	[1]清理：删除以前的字节码文件，为下面做准备。
+	[2]编译：将Java文件编译为字节码文件。
+	[3]测试：自动调用junit测试。
+	[4]报告：生成测试结果。
+	[5]打包：动态web工程打包war，Java工程打包jar。
+	[6]安装：将打包的文件复制到仓库中。
+	[7]部署：将动态web工程生成的war包复制到servlet容器中。
+	
+4.安装maven核心程序：
+	[1]JAVA_HOME环境变量。
+		C:\Users\HP>echo %JAVA_HOME%     
+			C:\Program Files\Java\jdk1.8.0_231
+	[2]解压maven核心程序。
+	[3]配置maven的环境变量
+		MAVEN_HOME或者M2_HOME:
+			值为maven的解压目录。（bin目录的上一层）
+		path
+			值为maven的解压目录下一层（bin目录这一层）
+		
+
+	修改默认本地仓库的位置：
+		在maven的解压目录的conf/setting.xml中找到localRepository标签。
+	
+	常用命令：
+	mvn -clean
+	mvn -compile
+	mvn -test compile
+	mvn -package
+5.maven的核心概念：
+	[1]约定的目录结构
+	[2]POM
+	[3]坐标
+	[4]依赖：
+	[5]仓库：本地仓库，远程仓库。
+	[6]生命周期/插件/目标
+	[7]继承
+	[8]聚合
+	
+6.创建第一个Maven工程
+	[1]创建约定的目录结构
+		Hello								工程名
+		|---src								源码
+		|---|---main						存放主程序
+		|---|---|---java					存放Java代码
+		|---|---|---resources				存放框架或其他的配置文件
+		|---|---test						存放测试程序
+		|---|---|---java
+		|---|---|---resources
+		|---pom.xml							maven的核心配置文件
+		约定>配置>编码
+		
+7.POM：	Project Object Modle 项目对象模型		（DOM	Document Object Modle 文档对象模型）
+8.坐标：
+	使用groupid+artifactid+version来定位Maven工程。（GAV）
+	<groupId>com.zhongbin.maven</groupId>
+    <artifactId>myFirstMavenProject</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+9.依赖：
+	<dependencies>
+		<dependency>
+			<groupId>...</groupId>
+			<artifactId>...</artifactId>
+			<version>...</version>
+			<scope>...</scope>三个取值：compile/test/provided
+		</dependency>
+	</dependencies>
+10.生命周期：
+	不能打乱顺序，每次都会从clean一直运行到命令指定位置。
