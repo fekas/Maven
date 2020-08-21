@@ -68,7 +68,26 @@
 			<artifactId>...</artifactId>
 			<version>...</version>
 			<scope>...</scope>三个取值：compile/test/provided
-		</dependency>
-	</dependencies>
+		</dependency>		
+	</dependencies>	
+	test类型的依赖不能传递	
 10.生命周期：
 	不能打乱顺序，每次都会从clean一直运行到命令指定位置。
+11.在eclipse中配置maven
+	window/preferences/maven/installation	指定maven的解压目录
+							/user settings	指定conf/setting.xml的位置
+	maven通过打包方式区别Java工程和web工程。
+	用maven创建Java工程：打jar包
+		通过maven创建工程的jdk版本：
+			打开setting.xml,找到profiles标签。加入配置信息：
+	用maven创建web工程：打war包
+		工程上右键选择properties->project facets->去掉dynamic web module，apply后在点上。
+		点击下面出现的提示，出现会话框中在content directory输入src/main/webapp
+12.依赖的排除(需要排除不稳定的jar包或者对当前项目有影响的jar包)
+	在dependencies标签中添加exclusion标签。
+13.可以创建一个父工程让其余工程全部继承这个工程的依赖便于统一管理。
+	父工程打包方式为pom。
+14.聚合：一键安装各个模块工程。
+	在一个总的配置工程中配置各个参与聚合的模块。可用父工程。
+15.maven自动部署web工程。（不常用）
+	
